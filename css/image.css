@@ -1,0 +1,29 @@
+
+img.bingkais {
+padding:15px;
+background-color:#fff;
+border-radius:20px;
+}
+img.bingkaib {
+padding:50px;
+background-image:url(../images/bingkai.jpg);
+border:1px solid #ccc;
+}
+.dbingkai {
+padding:50px;
+background-image:url(../images/bingkai.jpg);
+width:250px;
+margin:20px auto;
+}
+img.bingkair {
+-webkit-transform: rotate(-5deg);
+-moz-transform: rotate(-5deg);
+-o-transform: rotate(-5deg);
+border:3px solid #fff;			
+}
+img.bingkair1 {
+-webkit-transform: rotate(5deg);
+-moz-transform: rotate(5deg);
+-o-transform: rotate(5deg);
+border:3px solid #fff;
+}

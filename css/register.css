@@ -1,0 +1,97 @@
+{
+/* 
+    Document   : form
+    Created on : Apr 3, 2012, 7:01:00 PM
+    Author     : melitik
+    Description:
+        Purpose of the stylesheet follows.
+*/
+        
+}@charset "utf-8";
+/* CSS Document */
+*:focus {outline:none}
+body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;}
+.registri_form h4, .registri_form label {font-family:Georgia, Times, "Times New Roman", serif;}
+.form_hint, .required_notification {font-size: 11px;}
+
+
+.register_form ul {
+    width: 293px; margin: 10px auto; padding: 10px 10px;
+        background:#47A5BF; border: 1px solid #e1e1e1;
+	-moz-box-shadow: 0px 0px 8px #444;
+	-webkit-box-shadow: 0px 0px 8px #444;
+        -moz-border-radius-topleft: 10px;
+        -moz-border-radius-topright: 10px;
+        -moz-border-radius-bottomright: 10px;
+        -moz-border-radius-bottomleft: 10px;
+        -webkit-border-radius: 10px 10px 10px 10px;
+        border-radius: 10px 10px 10px 10px;
+        
+}
+.register_form li{
+    padding:5px;
+    border-bottom:px solid #eee;
+    position:relative;
+	color:white;
+}
+.register_form li:first-child, .registri_form li:last-child {
+    border-bottom:px solid #777;
+}
+.register_form h4{
+    margin:0;
+	margin:5px 0 0px 0;
+    display: inline;
+}
+
+.register_form label {
+    width:80px;
+    margin-top: 3px;
+    display:inline-block;
+    float:left;
+	color :white;
+    padding:3px;
+}
+.register_form input {
+    height:15px;
+    width:150px;
+    padding:5px 5px;
+}
+.register_form textarea {padding:8px; width:270px;}
+.register_form button {margin-left:105px;}
+.register_form input, .register_form textarea {
+    border:1px solid #aaa;
+    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+    border-radius:2px;
+}
+.register_form input:focus, .register_form textarea:focus {
+    background: #fff;
+    border:1px solid #555;
+    box-shadow: 0 0 3px #aaa;
+}
+.register_form input:focus, .register_form textarea:focus { /* add this to the already existing style */
+    padding-right:40px;
+}
+.register_form input, .register_form textarea { /* add this to the already existing style */
+    -moz-transition: padding .25s;
+    -webkit-transition: padding .25s;
+    -o-transition: padding .25s;
+    transition: padding .25s;
+}
+.register_form input, .contact_form textarea {
+    padding-right:5px;
+}
+
+.register_form input:focus:invalid, .register_form textarea:focus:invalid { /* when a field is considered invalid by the browser */
+    background: #fff url(../images/invalid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535
+}
+.register_form input:required:valid, .register_form textarea:required:valid { /* when a field is considered valid by the browser */
+    background: #fff url(../images/valid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
+}
+
+.register_form input:focus + .form_hint {display: inline;}
+.register_form input:required:valid + .form_hint {background: #28921f;} /* change form hint color when valid */
+.register_form input:required:valid + .form_hint::before {color:#28921f;} /* change form hint arrow color when valid */
