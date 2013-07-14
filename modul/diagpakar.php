@@ -68,8 +68,8 @@ require 'modul/core.php';
 		$_SESSION['listgejala'] = Array();
 		$_SESSION['hasil_gejala_umum'] = Array();
 	}
-	echo "<pre>list"; print_r($_SESSION['list_gejala_umum']); echo "</pre>";
-	echo "<pre>hasil"; print_r($_SESSION['hasil_gejala_umum']); echo "</pre>";
+	// echo "<pre>list"; print_r($_SESSION['list_gejala_umum']); echo "</pre>";
+	// echo "<pre>hasil"; print_r($_SESSION['hasil_gejala_umum']); echo "</pre>";
 
 	$qry = mysql_query("SELECT t.idg idg,t.g_ya,t.g_tidak,g.pertanyaan FROM `t_pertanyaan` t
 						LEFT JOIN t_gejala g ON t.idg = g.idg WHERE t.idg='$next'") or die(mysql_error());
