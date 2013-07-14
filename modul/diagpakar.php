@@ -1,22 +1,75 @@
 <?php
 session_start();
+if($_GET['sess'])
+{
+	unset($_SESSION['list_gejala_setelah_umum']);
+	unset($_SESSION['listgejala']);
+	unset($_SESSION['hasil_gejala_umum']);
+	unset($_SESSION['list_gejala_umum']);
+	echo "<script>window.location.href = 'home.php?page=diagpakar';</script>";	
+}
 require 'inc/koneksi.php';
+require 'modul/core.php';
 	
-	if (isset($_POST['cur'])){
+	if (isset($_POST['cur'])){		
 		if (isset($_POST['ya'])){
 			$next = $_POST['yaval'];
+			$lgu = $_SESSION['list_gejala_umum'];
+			$afternext = (isset($lgu[0])) ? $lgu[0] : "";				
 			array_push($_SESSION['listgejala'], $_POST['cur']);
+			array_push($_SESSION['hasil_gejala_umum'], $_POST['cur']);
+
+			if ($next=="" && !isset($_SESSION['list_gejala_setelah_umum'])){
+				// echo "<script>window.location.href = 'home.php?page=hdiagpakar';</script>";			
+				$hasil = CF($_SESSION['hasil_gejala_umum']);			
+				$hasilmax = doublemax($hasil['h']);
+				$idpeny = $hasil['p'][$hasilmax['i']];
+				$gsu = gejala_setelah_umum($idpeny);
+				// echo "<pre>gsu"; print_r($gsu); echo "</pre>";
+				$next = $gsu[0];
+				$afternext = $gsu[1];
+
+				array_splice($_SESSION['list_gejala_umum'], 0, 2); //remove first and second
+			}
 		}else if(isset($_POST['tidak'])){
 			$next = $_POST['tidakval'];
+			$lgu = $_SESSION['list_gejala_umum'];
+			$afternext = (isset($lgu[0])) ? $lgu[0] : "";				
+			// array_splice($_SESSION['list_gejala_umum'], 0, 1); //remove first
+			if ($next=="" && !isset($_SESSION['list_gejala_setelah_umum'])){
+				// echo "<script>window.location.href = 'home.php?page=hdiagpakar';</script>";			
+				$hasil = CF($_SESSION['hasil_gejala_umum']);			
+				$hasilmax = doublemax($hasil['h']);
+				$idpeny = $hasil['p'][$hasilmax['i']];
+				$gsu = gejala_setelah_umum($idpeny);
+
+				$next = $gsu[0];
+				$afternext = $gsu[1];
+
+				array_splice($_SESSION['list_gejala_umum'], 0, 2); //remove first and second
+			}
 		}
-		if ($next==""){
-			echo "<script>window.location.href = 'home.php?page=hdiagpakar';</script>";
+		
+		array_splice($_SESSION['list_gejala_umum'], 0, 1); //remove first
+
+		if ($next=="" && isset($_SESSION['list_gejala_setelah_umum'])){
+			echo "<script>window.location.href = 'home.php?page=hdiagpakar';</script>";						
 		}
 	}else{
-		$mulai = "G034";
+		$gu = gejala_umum();
+
+		$lgu = $_SESSION['list_gejala_umum'];
+		// $mulai = "G034";
+		// $mulai = $gu[0];
+		$mulai = $lgu[0];
 		$next = $mulai;
+		$afternext = $lgu[1];
+		array_splice($_SESSION['list_gejala_umum'], 0, 2); //remove first and second
 		$_SESSION['listgejala'] = Array();
+		$_SESSION['hasil_gejala_umum'] = Array();
 	}
+	echo "<pre>list"; print_r($_SESSION['list_gejala_umum']); echo "</pre>";
+	echo "<pre>hasil"; print_r($_SESSION['hasil_gejala_umum']); echo "</pre>";
 
 	$qry = mysql_query("SELECT t.idg idg,t.g_ya,t.g_tidak,g.pertanyaan FROM `t_pertanyaan` t
 						LEFT JOIN t_gejala g ON t.idg = g.idg WHERE t.idg='$next'") or die(mysql_error());
@@ -27,8 +80,10 @@ require 'inc/koneksi.php';
 
 <form action="" id="form" method="post">	
 	<input type="hidden" name="cur" value="<?php echo $result['idg'];?>"/>
-	<input type="hidden" name="yaval" value="<?php echo $result['g_ya'];?>"/>
-	<input type="hidden" name="tidakval" value="<?php echo $result['g_tidak'];?>"/>
+	<!-- <input type="hidden" name="yaval" value="<?php // echo $result['g_ya'];?>"/> -->
+	<!-- <input type="hidden" name="tidakval" value="<?php // echo $result['g_tidak'];?>"/> -->
+	<input type="hidden" name="yaval" value="<?php echo $afternext; ?>"/>
+	<input type="hidden" name="tidakval" value="<?php echo $afternext; ?>"/>
 	<table width="100%">
 	<tr valign="top">
 	<td>

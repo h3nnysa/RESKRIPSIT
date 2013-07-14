@@ -16,7 +16,7 @@
       <li><a href="home.php?page=admin/vgejala">Data Gejala</a></li>
       <li><a href="home.php?page=admin/vpenyakit">Data Penyakit</a></li>
 	  <li><a href="home.php?page=admin/vmbmd">Data Probabilitas</a></li>
-	  <li><a href="home.php?page=diagpakar">Diagnosa Penyakit</a></li>
+	  <li><a href="home.php?page=diagpakar&sess=clear">Diagnosa Penyakit</a></li>
 	  <li><a href="home.php?page=hdiagnosa">Hasil Diagnosa</a></li>
     </ul>
 	

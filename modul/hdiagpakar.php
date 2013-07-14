@@ -3,7 +3,7 @@ session_start();
 require 'inc/koneksi.php';
 require 'modul/core.php';
 
-
+echo "<pre>"; print_r($_SESSION['listgejala']); echo "</pre>";
 	if (count($_SESSION['listgejala'])!=0){
 		$hasil = CF($_SESSION['listgejala']);
 		$hasilmax = doublemax($hasil['h']);
@@ -73,5 +73,9 @@ require 'modul/core.php';
 </table>	
 <?php	
 	}
- unset($_SESSION['listgejala']);
+unset($_SESSION['listgejala']);
+unset($_SESSION['list_gejala_setelah_umum']);
+unset($_SESSION['listgejala']);
+unset($_SESSION['hasil_gejala_umum']);
+unset($_SESSION['list_gejala_umum']);
 ?>

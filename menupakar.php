@@ -9,7 +9,7 @@
       <li><a href="home.php?page=f_penyakit">Data Penyakit</a></li>
       <li><a href="home.php?page=rule_pertanyaan">Basis Aturan</a></li>
 	  <li><a href="home.php?page=vrule">Data Probabilitas</a></li>
-	  <li><a href="home.php?page=diagpakar">Diagnosa Penyakit</a></li>
+	  <li><a href="home.php?page=diagpakar&sess=clear">Diagnosa Penyakit</a></li>
 	  <li><a href="home.php?page=hdiagnosa">Hasil Diagnosa</a></li>
     </ul>
 	
