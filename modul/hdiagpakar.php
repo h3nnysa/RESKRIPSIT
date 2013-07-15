@@ -3,7 +3,7 @@ session_start();
 require 'inc/koneksi.php';
 require 'modul/core.php';
 
-echo "<pre>"; print_r($_SESSION['listgejala']); echo "</pre>";
+// echo "<pre>"; print_r($_SESSION['listgejala']); echo "</pre>";
 	if (count($_SESSION['listgejala'])!=0){
 		$hasil = CF($_SESSION['listgejala']);
 		$hasilmax = doublemax($hasil['h']);

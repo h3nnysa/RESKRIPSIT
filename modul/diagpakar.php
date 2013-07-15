@@ -80,8 +80,10 @@ require 'modul/core.php';
 	// echo "<pre>list"; print_r($_SESSION['list_gejala_umum']); echo "</pre>";
 	// echo "<pre>hasil"; print_r($_SESSION['hasil_gejala_umum']); echo "</pre>";
 
-	$qry = mysql_query("SELECT t.idg idg,t.g_ya,t.g_tidak,g.pertanyaan FROM `t_pertanyaan` t
-						LEFT JOIN t_gejala g ON t.idg = g.idg WHERE t.idg='$next'") or die(mysql_error());
+	// $qry = mysql_query("SELECT t.idg idg,t.g_ya,t.g_tidak,g.pertanyaan FROM `t_pertanyaan` t
+	// 					LEFT JOIN t_gejala g ON t.idg = g.idg WHERE t.idg='$next'") or die(mysql_error());
+	$qry = mysql_query("SELECT * FROM t_gejala where idg = '$next'") or die(mysql_error());
+	// echo ("SELECT t.idg idg,t.g_ya,t.g_tidak,g.pertanyaan FROM `t_pertanyaan` t LEFT JOIN t_gejala g ON t.idg = g.idg WHERE t.idg='$next'");
 	$result = mysql_fetch_array($qry);
 ?>
 <br><br><br>
