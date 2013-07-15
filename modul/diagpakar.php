@@ -31,12 +31,17 @@ require 'modul/core.php';
 
 				array_splice($_SESSION['list_gejala_umum'], 0, 2); //remove first and second
 			}
+
+			if ($next=="" && !isset($_SESSION['list_gejala_setelah_umum']) && count($_SESSION['hasil_gejala_umum']) == 0){
+				echo "<script>window.location.href = 'home.php?page=hdiagpakar';</script>";
+			}			
+
 		}else if(isset($_POST['tidak'])){
 			$next = $_POST['tidakval'];
 			$lgu = $_SESSION['list_gejala_umum'];
 			$afternext = (isset($lgu[0])) ? $lgu[0] : "";				
 			// array_splice($_SESSION['list_gejala_umum'], 0, 1); //remove first
-			if ($next=="" && !isset($_SESSION['list_gejala_setelah_umum'])){
+			if ($next=="" && !isset($_SESSION['list_gejala_setelah_umum']) && count($_SESSION['hasil_gejala_umum']) > 0){
 				// echo "<script>window.location.href = 'home.php?page=hdiagpakar';</script>";			
 				$hasil = CF($_SESSION['hasil_gejala_umum']);			
 				$hasilmax = doublemax($hasil['h']);
@@ -47,6 +52,10 @@ require 'modul/core.php';
 				$afternext = $gsu[1];
 
 				array_splice($_SESSION['list_gejala_umum'], 0, 2); //remove first and second
+			}
+
+			if ($next=="" && !isset($_SESSION['list_gejala_setelah_umum']) && count($_SESSION['hasil_gejala_umum']) == 0){
+				echo "<script>window.location.href = 'home.php?page=hdiagpakar';</script>";
 			}
 		}
 		
